@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>marks</title>
+</head>
+<body>
+<h2>Enter marks</h2>
+
+<form action="{% url 'marks' %}" method="POST">
+    {% csrf_token %}
+  <h3>Name</h3><input type="text" id="name" name="name"><br>
+  <h3>Roll number</h3><input type="text" id="rollno" name="rollno"><br>
+  <h3>Marks in math</h3><input type="text" id="math" name="math" onchange="getNum()"><br>
+  <h3>Marks in physics</h3><input type="text" id="physics" name="physics" onchange="getNum()"><br>
+  <h3>Marks in chemistry</h3><input type="text" id="chemistry" name="chemistry" onchange="getNum()"><br>
+  <h3>Total</h3><input type="text" id="total" name="total" value="0" readonly="readonly"><br>
+  <h3>Percentage</h3><input type="text" id="per" name="per" value="0" readonly="readonly"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<p>If you click the "Submit" button, the form-data will be sent </p>
+<script>
+    function getNum() {
+         var math = Number(document.getElementById("math").value);
+         var phys = Number(document.getElementById("physics").value);
+         var chem = Number(document.getElementById("chemistry").value);
+         var total = math + phys + chem
+         var per = (total*100)/300;
+
+         if (math.value||phys.value||chem||value) {
+         document.getElementById("total").value = total;
+         document.getElementById("per").value = per.toFixed(2);
+        }
+        }
+</script>
+</body>
+</html>
